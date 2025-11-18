@@ -22,7 +22,7 @@ class Blockchain:
     def get_last_block(self):
         return self.chain[-1]
     
-    def add_transaction_to_mempool(self, tx: Transaction):
+    def add_transaction_to_mempool(self,tx:Transaction):
         if not tx.is_valid():
             return False
         if tx.tx_hash in self.mempool:
