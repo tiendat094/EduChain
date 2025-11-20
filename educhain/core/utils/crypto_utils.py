@@ -28,7 +28,7 @@ class CryptoUtils:
     def generate_key_pair():
         sk = SigningKey.generate(curve=SECP256k1)
         vk = sk.get_verifying_key()
-        return sk.to_string().hex(), vk.to_string().hex()
+        return vk.to_string().hex(), sk.to_string().hex()
 
     @staticmethod
     def get_public_key(private_key_hex):
@@ -45,6 +45,7 @@ class CryptoUtils:
     def sign_data(data, private_key_hex):
         sk = SigningKey.from_string(bytes.fromhex(private_key_hex), curve=SECP256k1)
         if not isinstance(data, bytes):
+            print("Signing data (not bytes), converting to JSON string")
             data_str = json.dumps(data, sort_keys=True)
             data_bytes = data_str.encode('utf-8')
         else:

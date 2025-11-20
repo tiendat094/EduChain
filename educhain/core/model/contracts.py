@@ -1,5 +1,5 @@
 from uuid import uuid4
-from ..utils.crypto_utils import CryptoUtils
+from educhain.core.utils.crypto_utils import CryptoUtils
 
 
 class NFTContract:

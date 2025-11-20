@@ -66,12 +66,14 @@ class NFT:
         # decode signature từ base64
         try:
             sig_bytes = base64.b64decode(self.issuer_signature)
+            # sig_bytes là bytes, nhưng verify_signature expects hex string
+            sig_hex = sig_bytes.decode() if isinstance(sig_bytes, bytes) else sig_bytes
         except Exception:
             # nếu không decode được, truyền raw string (fallback)
-            sig_bytes = self.issuer_signature
+            sig_hex = self.issuer_signature
 
         try:
-            return CryptoUtils.verify_signature(data_bytes, sig_bytes, self.issuer_pubkey)
+            return CryptoUtils.verify_signature(data_bytes, sig_hex, self.issuer_pubkey)
         except Exception:
             return False
 
