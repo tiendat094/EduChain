@@ -11,7 +11,7 @@ class Transaction:
         self.payload = payload
         self.timestamp = timestamp or time.time()
         self.signature = signature
-        self.tx_hash = self.ca
+        self.tx_hash = self.calculate_hash()
 
     def get_singing_data(self):
         return {
@@ -23,10 +23,10 @@ class Transaction:
     
     def calculate_hash(self):
         data = self.get_singing_data()
-        data_str = json.dumps(data, sort_key=True).encode('utf-8')
+        data_str = json.dumps(data, sort_keys=True).encode('utf-8')
         return hashlib.sha256(data_str).hexdigest()
     
-    def sing(self, private_key_hex: str):
+    def sign(self, private_key_hex: str):
         data_to_sign = self.get_singing_data()
         self.signature = CryptoUtils.sign_data(data_to_sign, private_key_hex)
     

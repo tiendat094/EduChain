@@ -4,12 +4,12 @@ from educhain.core.utils.crypto_utils import CryptoUtils
 import time
 import hashlib
 import json
-class BLock:
+class Block:
     def __init__(self, index: int, prev_hash: str, validator_pubkey: str, transactions: List[Transaction] = None, timestamp: float = None):
         self.index = index
         self.prev_hash = prev_hash
         self.timestamp = timestamp or time.time()
-        self.trancactions = transactions or []
+        self.transactions = transactions or []
         self.validator_pubkey = validator_pubkey
         self.validator_signature = None
         self.merkle_root = self.calculate_merkle_root()
@@ -53,4 +53,3 @@ class BLock:
             "hash": self.hash,
             "validator_signature": self.validator_signature
         }
-        
