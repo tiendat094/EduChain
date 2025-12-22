@@ -1,8 +1,8 @@
 """Top-level runner: initialize keys, blockchain, scheduler and run the API."""
-from educhain.crypto_utils import CryptoUtils
-from educhain.blockchain import Blockchain
-from educhain.scheduler import PoAScheduler
-from educhain.api import create_app
+from educhain.core.utils.crypto_utils import CryptoUtils
+from educhain.core.model.blockchain import Blockchain
+from educhain.core.service.scheduler import PoAScheduler
+from educhain.core.controller.api import create_app
 import threading
 
 
